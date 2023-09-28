@@ -6,13 +6,13 @@ from .models import BlogPost
 
 
 def index(request):
-	"""
-	Main page
-	"""
+    """
+    Main page
+    """
 
-	posts = BlogPost.objects.all()
-	
-	context = {
-		"posts": posts
-	}
-	return render(request, 'index.html', context)
+    posts = BlogPost.objects.all()
+
+    context = {
+        "posts": posts
+    }
+    return render(request, 'index.html', context)

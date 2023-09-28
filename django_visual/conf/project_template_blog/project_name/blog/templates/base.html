@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -20,24 +20,24 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">
-            My happy blog
-        </a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">
+        My happy blog
+    </a>
 
-        <a href="/admin/">Open Admin panel</a> and post something to this blog. Username: admin/superuser
-    </nav>
+    <a href="/admin/">Open Admin panel</a> and post something to this blog. Username: admin/superuser
+</nav>
 
-    <main role="main">
-        <div class="jumbotron">
-          <div class="col-sm-8 mx-auto">
+<main role="main">
+    <div class="jumbotron">
+        <div class="col-sm-8 mx-auto">
             <h1>Blog posts</h1>
             {% block content %}
             <!-- IT'S EMTPY. ADD SOME LOVE IN CHILD TEMPLATE - index.html -->
             {% endblock %}
-          </div>
         </div>
-    </main>
+    </div>
+</main>
 </body>
 
 </html>

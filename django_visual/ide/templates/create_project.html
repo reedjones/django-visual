@@ -3,25 +3,25 @@
 {% block body_inner_title %}Create new project{% endblock %}
 
 {% block body_inner %}
-  {% if error %}
-			<div class="alert alert-danger" role="alert">
-			{{error}}
-		</div>
-	{% endif %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{error}}
+</div>
+{% endif %}
 
-	<form method="POST" action="/ide/create_project/" class="p-3">
-		{% csrf_token %}
-		<input type="hidden" name="template" value="{{template}}" />
-		<div class="form-group">
-  		<label for="title">Project name</label>
-  		<input type="text" name="title" value="{{title}}" required class="form-control"  />
-  		<ul class="small">
-        <li>Project name: please use only numbers, letters and underscores.</li>
-        <li>Project will be created in <code>{{projects_home}}</code></li>
-      </ul>
-  	</div>
+<form action="/ide/create_project/" class="p-3" method="POST">
+    {% csrf_token %}
+    <input name="template" type="hidden" value="{{template}}"/>
+    <div class="form-group">
+        <label for="title">Project name</label>
+        <input class="form-control" name="title" required type="text" value="{{title}}"/>
+        <ul class="small">
+            <li>Project name: please use only numbers, letters and underscores.</li>
+            <li>Project will be created in <code>{{projects_home}}</code></li>
+        </ul>
+    </div>
 
-		<button type="submit" class="btn btn-primary">Create project</button>
-		<a href="/" class="btn btn-light">Cancel</a>
-  </form>
+    <button class="btn btn-primary" type="submit">Create project</button>
+    <a class="btn btn-light" href="/">Cancel</a>
+</form>
 {% endblock %}

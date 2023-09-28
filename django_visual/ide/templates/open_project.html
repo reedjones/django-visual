@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="/static/css/jstree.3.2.1.style.min.css" />
+<link href="/static/css/jstree.3.2.1.style.min.css" rel="stylesheet"/>
 
 <script src="/static/js/split.1.3.5.min.js"></script>
 <script src="/static/js/jstree.3.2.1.min.js"></script>
@@ -19,379 +19,401 @@
 
 {% block body %}
 <div class="row no-gutters full-height">
-	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light border-bottom">
-	  	<a class="navbar-brand" href="/">
-	        <img src="/static/imgs/vdj.png" alt="VDj" style="width: 1.5em" class="float-left pr-1" />
-	        Visual Django
-	    </a>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light border-bottom">
+        <a class="navbar-brand" href="/">
+            <img alt="VDj" class="float-left pr-1" src="/static/imgs/vdj.png" style="width: 1.5em"/>
+            Visual Django
+        </a>
 
-	    <a class="nav-link disabled" href="#">|</a>
+        <a class="nav-link disabled" href="#">|</a>
 
-	    <a class="navbar-brand" href="#">
-	    	Project: {{project_id}}
-	    </a>
+        <a class="navbar-brand" href="#">
+            Project: {{project_id}}
+        </a>
 
-	    <!-- <a class="btn btn-success btn-sm" href="#" data-toggle="modal" data-target="#run_project_modal">
+        <!-- <a class="btn btn-success btn-sm" href="#" data-toggle="modal" data-target="#run_project_modal">
           Run
         </a> -->
 
-	    <a class="btn btn-primary btn-sm" href="#" id="debug_project_btn">
-			Run
-		</a>
-		&nbsp;
-		<a class="btn btn-danger btn-sm" href="#" id="stop_project_btn">
-			Stop
-		</a>
+        <a class="btn btn-primary btn-sm" href="#" id="debug_project_btn">
+            Run
+        </a>
+        &nbsp;
+        <a class="btn btn-danger btn-sm" href="#" id="stop_project_btn">
+            Stop
+        </a>
 
-	    <div class="collapse navbar-collapse" id="navbarCollapse">
-	      <ul class="navbar-nav mr-auto">
-	      	<li class="nav-item">
-		    	<a class="nav-link disabled" href="#">|</a>
-		  	</li>
-	        <li class="nav-item dropdown">
-			    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">File</a>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">New File</a>
-			      <a class="dropdown-item" href="#">Save</a>
-			      <a class="dropdown-item" href="#">Save All</a>
-			      <div class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">Close File</a>
-			      <a class="dropdown-item" href="#">Close All Files</a>
-			      <div class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="/">Open Project</a>
-			      <a class="dropdown-item" href="/#v-pills-new">Create Project</a>
-			      <div class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="https://docs.djangoproject.com">Django Help</a>
-			    </div>
-			</li>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">|</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">File</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">New File</a>
+                        <a class="dropdown-item" href="#">Save</a>
+                        <a class="dropdown-item" href="#">Save All</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Close File</a>
+                        <a class="dropdown-item" href="#">Close All Files</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/">Open Project</a>
+                        <a class="dropdown-item" href="/#v-pills-new">Create Project</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://docs.djangoproject.com">Django Help</a>
+                    </div>
+                </li>
 
-			<li class="nav-item dropdown">
-			    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Edit</a>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">Undo</a>
-			      <div class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">Cut</a>
-			      <a class="dropdown-item" href="#">Copy</a>
-			      <a class="dropdown-item" href="#">Paste</a>
-			    </div>
-			</li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">Edit</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Undo</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Cut</a>
+                        <a class="dropdown-item" href="#">Copy</a>
+                        <a class="dropdown-item" href="#">Paste</a>
+                    </div>
+                </li>
 
-			<li class="nav-item dropdown">
-			    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Help</a>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" target=_blank href="https://github.com/vsergeyev/django-visual">GitHub page</a>
-			      <div class="dropdown-divider"></div>
-			      <a class="dropdown-item" target=_blank href="https://pythondevside.blogspot.com">Volodymyr Sergeyev blog</a>
-			      <a class="dropdown-item" target=_blank href="http://linkedin.com/in/volodymyrsergeyev/">Volodymyr Sergeyev LinkedIn</a>
-			    </div>
-			</li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">Help</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="https://github.com/vsergeyev/django-visual" target=_blank>GitHub
+                            page</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://pythondevside.blogspot.com" target=_blank>Volodymyr
+                            Sergeyev blog</a>
+                        <a class="dropdown-item" href="http://linkedin.com/in/volodymyrsergeyev/" target=_blank>Volodymyr
+                            Sergeyev LinkedIn</a>
+                    </div>
+                </li>
 
-	      </ul>
+            </ul>
 
-	      <form class="form-inline mt-2 mt-md-0">
-	        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-	        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	      </form>
-	    </div>
-	</nav>
+            <form class="form-inline mt-2 mt-md-0">
+                <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="text">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
-    <div id="navigator_column" class="col">
-    	<ul class="nav nav-tabs">
-		  <li class="nav-item">
-		    <a class="nav-link bg-blue" role="tab">Project Navigator</a>
-		  </li>
-		</ul>
-		<div class="card border-0">
-	        <!-- https://www.jstree.com/ -->
-	        <div class="card-block px-2">
-		    	<div id="project_tree">
-		    		<ul>
-			    	{% for item, value in project_tree.items %}
-			    		<li>{{item}}
-			    		{% if value.items %}
-							<ul>
-								{% for item, value in value.items %}
-			    					<li {% if value.items %}{% else %}data-path="{{value}}"{% endif %}>{{item}}
-			    					{% if value.items %}
-										<ul>
-											{% for item, value in value.items %}
-			    								<li {% if value.items %}{% else %}data-path="{{value}}"{% endif %}>{{item}}
-			    								{% if value.items %}
-													<ul>
-														{% for item, value in value.items %}
-			    											<li data-path="{{value}}">{{item}}</li>
-			    										{% endfor %}
-													</ul>
-												{% endif %}
-												</li>
-			    							{% endfor %}
-										</ul>
-									{% endif %}
-									</li>
-			    				{% endfor %}
-							</ul>
-						{% endif %}
-						</li>
-					{% endfor %}
-					</ul>
-				</div>
-			</div>
-			<!-- <div class="card-footer">
-	            Edit
-	        </div> -->
-		</div>
+    <div class="col" id="navigator_column">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link bg-blue" role="tab">Project Navigator</a>
+            </li>
+        </ul>
+        <div class="card border-0">
+            <!-- https://www.jstree.com/ -->
+            <div class="card-block px-2">
+                <div id="project_tree">
+                    <ul>
+                        {% for item, value in project_tree.items %}
+                        <li>{{item}}
+                            {% if value.items %}
+                            <ul>
+                                {% for item, value in value.items %}
+                                <li %} %}data-path="{{value}}" %}{% else endif if value.items {% {%>{{item}}
+                                    {% if value.items %}
+                                    <ul>
+                                        {% for item, value in value.items %}
+                                        <li %} %}data-path="{{value}}" %}{% else endif if value.items {% {%>{{item}}
+                                            {% if value.items %}
+                                            <ul>
+                                                {% for item, value in value.items %}
+                                                <li data-path="{{value}}">{{item}}</li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="card-footer">
+                Edit
+            </div> -->
+        </div>
 
     </div>
 
-    <div id="center_column" class="col">
-    	<!-- Editor Area -->
-    	<ul class="nav nav-tabs" id="center_column_tabs" role="tablist">
-		  <li class="nav-item">
-		    <a href="#welcome-editor" class="nav-link active bg-blue" id="welcome-tab" data-toggle="tab" role="tab" aria-selected="true">
-		    	Welcome
-		    </a>
-		  </li>
-		  <li class="nav-item">
-		    <a href="#structure-editor" class="nav-link bg-blue" id="structure-tab" data-toggle="tab" role="tab">
-		    	Project Structure
-		    </a>
-		  </li>
-		  <li class="nav-item">
-		    <a href="#run-output" class="nav-link bg-blue" id="structure-tab" data-toggle="tab" role="tab">
-		    	Console
-		    </a>
-		  </li>
-		</ul>
-		<div class="tab-content h-100 border-left" id="center_column_tabs_content">
-		  <div class="tab-pane show active h-100" id="welcome-editor" role="tabpanel">
-		  	<iframe style="height: 100%; width: 100%; border: 0" src="https://vsergeyev.github.io/django-visual/"></iframe>
-		  </div>
+    <div class="col" id="center_column">
+        <!-- Editor Area -->
+        <ul class="nav nav-tabs" id="center_column_tabs" role="tablist">
+            <li class="nav-item">
+                <a aria-selected="true" class="nav-link active bg-blue" data-toggle="tab" href="#welcome-editor" id="welcome-tab"
+                   role="tab">
+                    Welcome
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-blue" data-toggle="tab" href="#structure-editor" id="structure-tab" role="tab">
+                    Project Structure
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-blue" data-toggle="tab" href="#run-output" id="structure-tab" role="tab">
+                    Console
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content h-100 border-left" id="center_column_tabs_content">
+            <div class="tab-pane show active h-100" id="welcome-editor" role="tabpanel">
+                <iframe src="https://vsergeyev.github.io/django-visual/"
+                        style="height: 100%; width: 100%; border: 0"></iframe>
+            </div>
 
-		  <div class="tab-pane h-100 p-3" id="structure-editor" role="tabpanel">
+            <div class="tab-pane h-100 p-3" id="structure-editor" role="tabpanel">
 
-		  	<img class="img-fluid" src="http://yuml.me/diagram/boring;dir:lr/class/{% for item, models in project_apps.iteritems %}[{{project_id}}]<>->[{{item}}], {% for model in models %}[{{item}}]<>->[{{model.name}}], {% endfor %}{% endfor %}" >
+                <img class="img-fluid"
+                     src="http://yuml.me/diagram/boring;dir:lr/class/{% for item, models in project_apps.iteritems %}[{{project_id}}]<>->[{{item}}], {% for model in models %}[{{item}}]<>->[{{model.name}}], {% endfor %}{% endfor %}">
 
-		  	<!--
-		  	{% for item, models in project_apps.iteritems %}
-		  		[{{project_id}}]<>->[{{item}}],
-		  		{% for model in models %}
-		  			[{{item}}]<>->[{{model.name}}]
-		  		{% endfor %}
-		  	{% endfor %}
-			-->
+                <!--
+                {% for item, models in project_apps.iteritems %}
+                    [{{project_id}}]<>->[{{item}}],
+                    {% for model in models %}
+                        [{{item}}]<>->[{{model.name}}]
+                    {% endfor %}
+                {% endfor %}
+              -->
 
-		  	<p>Diagram is drawn using <a href="https://yuml.me" target=_blank>https://yuml.me</a></p>
-		  </div>
+                <p>Diagram is drawn using <a href="https://yuml.me" target=_blank>https://yuml.me</a></p>
+            </div>
 
-		  <div class="tab-pane h-100 p-3" id="run-output" role="tabpanel" style="background-color: #000; color: #fff">
-		  	<pre id="run-output-log" style="color: #fff">Run project to get console output</pre>
-		  </div>
+            <div class="tab-pane h-100 p-3" id="run-output" role="tabpanel" style="background-color: #000; color: #fff">
+                <pre id="run-output-log" style="color: #fff">Run project to get console output</pre>
+            </div>
 
-		  {% for item, models in project_apps.iteritems %}
-		  	{% if 'django.contrib' in item %}
+            {% for item, models in project_apps.iteritems %}
+            {% if 'django.contrib' in item %}
 
-		    {% else %}
-			  <div class="tab-pane h-100 p-3" id="model-editor-{{item}}" role="tabpanel">
-			  	{% for model in models %}
-				<div class="card">
-					<ul class="nav nav-tabs">
-					  <li class="nav-item">
-					    <div class="nav-link active bg-light" role="tab">Model: {{model.name}}
-					    	&nbsp;
-					    	<i class="badge badge-info badge-pill float-right open-file" data-path="{{model.path}}"> {{model.rel_path}}</i>
-					    </div>
-					  </li>
-					</ul>
-			        <div class="card-block px-2">
-				    	<div class="list-group list-group-flush">
-				    	{% for field in model.fields %}
-						  <div class="list-group-item list-group-item-action">
-						    {{field.name}} <span class="badge badge-light badge-pill float-right">{{field.class}}</span>
-						  </div>
-						{% endfor %}
-						</div>
-					</div>
-				</div>
-				{% empty %}
-					<p>
-						No models defined
-					</p>
-				{% endfor %}
-				<hr />
-				<a class="btn btn-success float-right" data-toggle="collapse" href="#add_model_{{item}}">Add model</a>
-				<br />
-				<br />
+            {% else %}
+            <div class="tab-pane h-100 p-3" id="model-editor-{{item}}" role="tabpanel">
+                {% for model in models %}
+                <div class="card">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <div class="nav-link active bg-light" role="tab">Model: {{model.name}}
+                                &nbsp;
+                                <i class="badge badge-info badge-pill float-right open-file" data-path="{{model.path}}">
+                                    {{model.rel_path}}</i>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="card-block px-2">
+                        <div class="list-group list-group-flush">
+                            {% for field in model.fields %}
+                            <div class="list-group-item list-group-item-action">
+                                {{field.name}} <span
+                                    class="badge badge-light badge-pill float-right">{{field.class}}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p>
+                    No models defined
+                </p>
+                {% endfor %}
+                <hr/>
+                <a class="btn btn-success float-right" data-toggle="collapse" href="#add_model_{{item}}">Add model</a>
+                <br/>
+                <br/>
 
-				<div class="collapse" id="add_model_{{item}}">
-				  <form method="POST" action="add_model/">
-				      <input type="hidden" name="application" value="{{item}}" />
-					  <div class="card card-body">
-					    <ul class="nav nav-tabs">
-						  <li class="nav-item">
-						    <div class="nav-link active bg-light" role="tab">
-						    	Model: <input type="text" placeholder="ModelName" name="new_model_name" />
-						    	&nbsp;
-						    	<a target=_blank href="https://docs.djangoproject.com/en/2.2/topics/db/models/" class="badge badge-info badge-pill float-right">go to Django Models help</a>
-						    </div>
-						  </li>
-						</ul>
+                <div class="collapse" id="add_model_{{item}}">
+                    <form action="add_model/" method="POST">
+                        <input name="application" type="hidden" value="{{item}}"/>
+                        <div class="card card-body">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <div class="nav-link active bg-light" role="tab">
+                                        Model: <input name="new_model_name" placeholder="ModelName" type="text"/>
+                                        &nbsp;
+                                        <a class="badge badge-info badge-pill float-right" href="https://docs.djangoproject.com/en/2.2/topics/db/models/"
+                                           target=_blank>go to Django Models help</a>
+                                    </div>
+                                </li>
+                            </ul>
 
-						<div class="list-group-item list-group-item-action">
-						    id
-					    	<span class="badge badge-light badge-pill float-right">AutoField</span>
-						</div>
+                            <div class="list-group-item list-group-item-action">
+                                id
+                                <span class="badge badge-light badge-pill float-right">AutoField</span>
+                            </div>
 
-					    <div class="list-group-item list-group-item-action">
-					    	<a class="btn remove-model-field-row" href="#">&times;</a>
+                            <div class="list-group-item list-group-item-action">
+                                <a class="btn remove-model-field-row" href="#">&times;</a>
 
-						    <input type="text" placeholder="field" name="new_model_field_id" required />
-						    <input type="text" placeholder="options (optional)" name="new_model_field_options" />
-					    	<select class="badge badge-light badge-pill float-right" name="new_model_field_type" required>
-					    		<option value="CharField">CharField</option>
-					    		<option value="TextField">TextField</option>
-					    		<option value="IntegerField">IntegerField</option>
-					    		<option value="FloatField">FloatField</option>
-					    		<option value="URLField">URLField</option>
-					    		<option value="BooleanField">BooleanField</option>
-					    		<option value="DateField">DateField</option>
-					    		<option value="DateTimeField">DateTimeField</option>
-					    		<option value="ForeignKey">ForeignKey</option>
-					    	</select>
-						</div>
+                                <input name="new_model_field_id" placeholder="field" required type="text"/>
+                                <input name="new_model_field_options" placeholder="options (optional)" type="text"/>
+                                <select class="badge badge-light badge-pill float-right" name="new_model_field_type"
+                                        required>
+                                    <option value="CharField">CharField</option>
+                                    <option value="TextField">TextField</option>
+                                    <option value="IntegerField">IntegerField</option>
+                                    <option value="FloatField">FloatField</option>
+                                    <option value="URLField">URLField</option>
+                                    <option value="BooleanField">BooleanField</option>
+                                    <option value="DateField">DateField</option>
+                                    <option value="DateTimeField">DateTimeField</option>
+                                    <option value="ForeignKey">ForeignKey</option>
+                                </select>
+                            </div>
 
-						<div class="list-group-item list-group-item-action">
-							<a class="btn btn-light float-right add-model-field-row" href="#">Add Field</a>
-						</div>
+                            <div class="list-group-item list-group-item-action">
+                                <a class="btn btn-light float-right add-model-field-row" href="#">Add Field</a>
+                            </div>
 
-						<div class="list-group-item list-group-item-action">
-							<input type="submit" class="btn btn-primary" value="Save" />
-						</div>
-					  </div>
-				  </form>
-				</div>
-			  </div>
-			{% endif %}
-		  {% endfor %}
-		</div>
+                            <div class="list-group-item list-group-item-action">
+                                <input class="btn btn-primary" type="submit" value="Save"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
-    <div id="properties_column" class="col">
+    <div class="col" id="properties_column">
 
-    	<div class="card">
-    		<ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <a class="nav-link bg-blue" role="tab">Applications</a>
-			  </li>
-			</ul>
-	        <div class="card-block px-2">
-	        	{% if has_apps_error %}
-	        		<div class="alert alert-danger" role="alert">Error in INSTALLED_APPS: <br />{{has_apps_error}}</div>
-	        	{% endif %}
-		    	<div class="list-group list-group-flush my_and_django_contrib_apps">
-		    		<div class="list-group-item">
-				    	django.contrib.*
+        <div class="card">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link bg-blue" role="tab">Applications</a>
+                </li>
+            </ul>
+            <div class="card-block px-2">
+                {% if has_apps_error %}
+                <div class="alert alert-danger" role="alert">Error in INSTALLED_APPS: <br/>{{has_apps_error}}</div>
+                {% endif %}
+                <div class="list-group list-group-flush my_and_django_contrib_apps">
+                    <div class="list-group-item">
+                        django.contrib.*
 
-				    	<div class="dropdown float-right">
-						  <button class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Info
-						  </button>
-						  <div class="dropdown-menu dropdown-menu-right django_contrib_apps">
-						  	{% for item, models in project_apps.iteritems %}
-		    					{% if 'django.contrib' in item %}
-						    		<a class="dropdown-item small" href="#" id="app_sidebar_item_{{item}}">{{item}}</a>
-								{% endif %}
-				    		{% endfor %}
-						  </div>
-						</div>
-					</div>
+                        <div class="dropdown float-right">
+                            <button aria-expanded="false"
+                                    aria-haspopup="true" class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" type="button">
+                                Info
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right django_contrib_apps">
+                                {% for item, models in project_apps.iteritems %}
+                                {% if 'django.contrib' in item %}
+                                <a class="dropdown-item small" href="#" id="app_sidebar_item_{{item}}">{{item}}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
 
-		    	{% for item, models in project_apps.iteritems %}
-		    		{% if 'django.contrib' in item %}
+                    {% for item, models in project_apps.iteritems %}
+                    {% if 'django.contrib' in item %}
 
-		    		{% else %}
-					  <div class="list-group-item list-group-item-action">
-					  	<a href="#" id="app_sidebar_item_{{item}}" data-panel="model-editor-{{item}}" class="list-group-item-action open-model-editor"><i class="glyphicon glyphicon-edit"></i> {{item}}</a>
+                    {% else %}
+                    <div class="list-group-item list-group-item-action">
+                        <a class="list-group-item-action open-model-editor" data-panel="model-editor-{{item}}" href="#"
+                           id="app_sidebar_item_{{item}}"><i class="glyphicon glyphicon-edit"></i>
+                            {{item}}</a>
 
-					  	{% if models %}
-					  	<div class="dropdown float-right">
-					  	  <button class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Models
-						  </button>
-						  <div class="dropdown-menu dropdown-menu-right">
-				  			{% for model in models %}
-				    			<a class="dropdown-item small" href="#">{{model.name}}</a>
-				  			{% endfor %}
-						  </div>
-						</div>
-						{% endif %}
-					  </div>
-					 {% endif %}
-				{% endfor %}
-				</div>
-			</div>
-			<div class="card-footer">
+                        {% if models %}
+                        <div class="dropdown float-right">
+                            <button aria-expanded="false"
+                                    aria-haspopup="true" class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" type="button">
+                                Models
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                {% for model in models %}
+                                <a class="dropdown-item small" href="#">{{model.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer">
 	            <span>
 					<!-- <a href="#" class="badge badge-info badge-pill float-right" onclick="project_tree_open_file('settings.py', '{{project_settings_file}}'); return false;">Edit</a> -->
-					<a data-toggle="modal" data-target="#edit_application_modal" href="#" class="badge badge-info badge-pill float-right" >Edit</a>
-					<a data-toggle="modal" data-target="#add_application_modal" href="#" class="badge badge-info badge-pill float-right">Create</a>
+					<a class="badge badge-info badge-pill float-right" data-target="#edit_application_modal" data-toggle="modal"
+                       href="#">Edit</a>
+					<a class="badge badge-info badge-pill float-right" data-target="#add_application_modal" data-toggle="modal"
+                       href="#">Create</a>
 				</span>
-	        </div>
-		</div>
+            </div>
+        </div>
 
-		<div class="card">
-	        <ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <span class="nav-link bg-blue" role="tab">Databases</span>
-			  </li>
-			</ul>
-	        <div class="card-block px-2">
-		    	<div class="list-group list-group-flush">
-		    	{% for label, item in project_databases.items %}
-				  <div class="list-group-item">
-				    {{label}}
+        <div class="card">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <span class="nav-link bg-blue" role="tab">Databases</span>
+                </li>
+            </ul>
+            <div class="card-block px-2">
+                <div class="list-group list-group-flush">
+                    {% for label, item in project_databases.items %}
+                    <div class="list-group-item">
+                        {{label}}
 
-					<div class="dropdown float-right">
-					  <button class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    Info
-					  </button>
-					  <div class="dropdown-menu dropdown-menu-right">
-					  	{% for key, value in item.iteritems %}
-					    	<a class="dropdown-item small" href="#">{{key}}: {{value}}</a>
-					    {% endfor %}
-					  </div>
-					</div>
-				</div>
-				{% endfor %}
-				</div>
-			</div>
-			<div class="card-footer">
+                        <div class="dropdown float-right">
+                            <button aria-expanded="false"
+                                    aria-haspopup="true" class="badge badge-info badge-pill btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" type="button">
+                                Info
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                {% for key, value in item.iteritems %}
+                                <a class="dropdown-item small" href="#">{{key}}: {{value}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer">
 	            <span>
-					<a href="#" class="badge badge-info badge-pill float-right" onclick="project_tree_open_file('settings.py', '{{project_settings_file}}'); return false;">Edit</a>
+					<a class="badge badge-info badge-pill float-right" href="#"
+                       onclick="project_tree_open_file('settings.py', '{{project_settings_file}}'); return false;">Edit</a>
 				</span>
-	        </div>
-		</div>
+            </div>
+        </div>
 
-		<div class="card">
-	        <ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <span class="nav-link bg-blue" role="tab">URLs</span>
-			  </li>
-			</ul>
-	        <div class="card-block px-2">
-		    	<div class="list-group list-group-flush">
-		    	{% for item in project_urls %}
-				  <span class="list-group-item">
+        <div class="card">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <span class="nav-link bg-blue" role="tab">URLs</span>
+                </li>
+            </ul>
+            <div class="card-block px-2">
+                <div class="list-group list-group-flush">
+                    {% for item in project_urls %}
+                    <span class="list-group-item">
 				    {{item}}
 				  </span>
-				{% endfor %}
-				</div>
-			</div>
-			<div class="card-footer">
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer">
 	            <span>
-					<a href="#" class="badge badge-info badge-pill float-right" onclick="project_tree_open_file('urls.py', '{{project_urls_file}}'); return false;">Edit</a>
+					<a class="badge badge-info badge-pill float-right" href="#"
+                       onclick="project_tree_open_file('urls.py', '{{project_urls_file}}'); return false;">Edit</a>
 				</span>
-	        </div>
-		</div>
+            </div>
+        </div>
 
     </div>
 
@@ -403,55 +425,55 @@
 <!-- MODAL DIALOGS -->
 <!-- --------------------------------------------------------------------- -->
 
-<div id="add_application_modal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create Application</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <label for="title">Application name</label>
-  		<input type="text" name="new_app_name" id="id_new_app_name" value="" required class="form-control"  />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btn_add_application">Create Application</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
+<div class="modal" id="add_application_modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Application</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="title">Application name</label>
+                <input class="form-control" id="id_new_app_name" name="new_app_name" required type="text" value=""/>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="btn_add_application" type="button">Create Application</button>
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<div id="edit_application_modal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Installed Applications</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	You may remove applications from INSTALLED_APPS (settings.py).
-      	This will not remove files on disk. So you may add these applications later again.
-      	<ul class="list-group">
-        {% for item, models in project_apps.iteritems %}
-			<li class="list-group-item"><span>{{item}}</span>
-				<a class="float-right btn btn-danger btn-remove-app" href="#">Remove</a>
-			</li>
-		{% endfor %}
-		</ul>
-		<label for="title">Add existing application</label>
-		<input type="text" name="edit_app_name" id="id_edit_app_name" value="" required class="form-control"  />
-		<a class="float-right btn btn-primary btn-add-app" href="#">Add to INSTALLED_APPS</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" data-dismiss="modal">Done</button>
-      </div>
+<div class="modal" id="edit_application_modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Installed Applications</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You may remove applications from INSTALLED_APPS (settings.py).
+                This will not remove files on disk. So you may add these applications later again.
+                <ul class="list-group">
+                    {% for item, models in project_apps.iteritems %}
+                    <li class="list-group-item"><span>{{item}}</span>
+                        <a class="float-right btn btn-danger btn-remove-app" href="#">Remove</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <label for="title">Add existing application</label>
+                <input class="form-control" id="id_edit_app_name" name="edit_app_name" required type="text" value=""/>
+                <a class="float-right btn btn-primary btn-add-app" href="#">Add to INSTALLED_APPS</a>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" type="button">Done</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- --------------------------------------------------------------------- -->
@@ -468,195 +490,203 @@
 
 
     */
-    var splitobj = Split(["#navigator_column","#center_column","#properties_column"], {
+    var splitobj = Split(["#navigator_column", "#center_column", "#properties_column"], {
         elementStyle: function (dimension, size, gutterSize) {
             $(window).trigger('resize'); // Optional
             return {'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'}
         },
-        gutterStyle: function (dimension, gutterSize) { return {'flex-basis':  gutterSize + 'px'} },
-        sizes: [20,60,20],
+        gutterStyle: function (dimension, gutterSize) {
+            return {'flex-basis': gutterSize + 'px'}
+        },
+        sizes: [20, 60, 20],
         minSize: 50,
         gutterSize: 6,
         cursor: 'col-resize'
     });
 
-    var PROJECT_HOME =  "{{project_home}}";
+    var PROJECT_HOME = "{{project_home}}";
 
     var PROJECT_PID = -1;
     var PROJECT_TIMER_ID = 0;
 
-    var project_apps = [{% for item, models in project_apps.iteritems %}'{{item}}', {% endfor %}];
+    var project_apps = [{ %
+    for item, models in project_apps.iteritems %}
+    '{{item}}', { % endfor %
+    }]
 
-    $('#project_tree').jstree().on('ready.jstree', function(){
-    	$.jstree.defaults.core.multiple = false;
 
-    	$(this).jstree('open_all');
+    $('#project_tree').jstree().on('ready.jstree', function () {
+        $.jstree.defaults.core.multiple = false;
 
-    	$(this).on("changed.jstree", function (e, data) {
-			var label = $("#" + data.selected[0]).text().trim(),
-				path = $("#" + data.selected[0]).attr("data-path").trim();
+        $(this).jstree('open_all');
 
-			var rel_path = path.replace(PROJECT_HOME, "");
+        $(this).on("changed.jstree", function (e, data) {
+            var label = $("#" + data.selected[0]).text().trim(),
+                path = $("#" + data.selected[0]).attr("data-path").trim();
 
-			project_tree_open_file(rel_path, path);
-		});
+            var rel_path = path.replace(PROJECT_HOME, "");
 
-		$(".open-model-editor").on("click", function() {
-			var panel = $(this).data("panel");
-			var label = $(this).text();
+            project_tree_open_file(rel_path, path);
+        });
 
-			if ($('#tab-' + panel).length == 0) {
-				$('<li class="nav-item">'
-		    	  + '<a href="#' + panel + '" class="nav-link bg-blue" id="tab-' + panel + '" data-toggle="tab" role="tab" '
-		    	  + 'aria-controls="' + panel + '">Application: ' + label + '</a>'
-		  		  + '</li>').appendTo("#center_column_tabs");
-			}
+        $(".open-model-editor").on("click", function () {
+            var panel = $(this).data("panel");
+            var label = $(this).text();
 
-			$('#tab-' + panel).tab('show');
-		});
+            if ($('#tab-' + panel).length == 0) {
+                $('<li class="nav-item">'
+                    + '<a href="#' + panel + '" class="nav-link bg-blue" id="tab-' + panel + '" data-toggle="tab" role="tab" '
+                    + 'aria-controls="' + panel + '">Application: ' + label + '</a>'
+                    + '</li>').appendTo("#center_column_tabs");
+            }
 
-		$("#btn_add_application").click(function() {
-			var app = $("#id_new_app_name").val();
-    		$("#add_application_modal").modal('hide');
-	    	create_application(app);
-	    });
+            $('#tab-' + panel).tab('show');
+        });
 
-	    $('#add_application_modal').on('hidden.bs.modal', function (e) {
-			$("#id_new_app_name").val("");
-		});
+        $("#btn_add_application").click(function () {
+            var app = $("#id_new_app_name").val();
+            $("#add_application_modal").modal('hide');
+            create_application(app);
+        });
 
-		$(".btn-remove-app").on("click", function() {
-			var app = $(this).parent().find('span').text();
-			$(this).parent().remove();
+        $('#add_application_modal').on('hidden.bs.modal', function (e) {
+            $("#id_new_app_name").val("");
+        });
 
-			document.getElementById("app_sidebar_item_" + app).remove();
-			project_apps = project_apps.filter(function(value, index, arr){return value != app});
-			// console.log(project_apps);
-			remove_application(app);
-		});
+        $(".btn-remove-app").on("click", function () {
+            var app = $(this).parent().find('span').text();
+            $(this).parent().remove();
 
-		$(".btn-add-app").on("click", function() {
-			var app = $("#id_edit_app_name").val();
+            document.getElementById("app_sidebar_item_" + app).remove();
+            project_apps = project_apps.filter(function (value, index, arr) {
+                return value != app
+            });
+            // console.log(project_apps);
+            remove_application(app);
+        });
 
-			$(this).parent().find("ul").append(
-				'<li class="list-group-item"><span>' + app + '</span>'
-			    + '<a class="float-right btn btn-danger btn-remove-app" href="#">Remove</a>'
-				+ '</li>'
-			);
+        $(".btn-add-app").on("click", function () {
+            var app = $("#id_edit_app_name").val();
 
-			if (app.indexOf("django.contrib") == -1) {
-				$("div.my_and_django_contrib_apps").append(
-					'<div class="list-group-item list-group-item-action">'
-					+ '<a href="#" id="app_sidebar_item_' + app + '" data-panel="model-editor-'
-					+ app + '" class="list-group-item-action open-model-editor">'
-					+ '<i class="glyphicon glyphicon-edit"></i> ' + app + '</a>'
-					+ '</div>'
-				);
-			} else {
-				$("div.django_contrib_apps").append(
-					'<a class="dropdown-item small" href="#" id="app_sidebar_item_' + app + '">' + app + '</a>'
-				);
-			}
+            $(this).parent().find("ul").append(
+                '<li class="list-group-item"><span>' + app + '</span>'
+                + '<a class="float-right btn btn-danger btn-remove-app" href="#">Remove</a>'
+                + '</li>'
+            );
 
-			project_apps.push(app);
-			// console.log(project_apps);
+            if (app.indexOf("django.contrib") == -1) {
+                $("div.my_and_django_contrib_apps").append(
+                    '<div class="list-group-item list-group-item-action">'
+                    + '<a href="#" id="app_sidebar_item_' + app + '" data-panel="model-editor-'
+                    + app + '" class="list-group-item-action open-model-editor">'
+                    + '<i class="glyphicon glyphicon-edit"></i> ' + app + '</a>'
+                    + '</div>'
+                );
+            } else {
+                $("div.django_contrib_apps").append(
+                    '<a class="dropdown-item small" href="#" id="app_sidebar_item_' + app + '">' + app + '</a>'
+                );
+            }
 
-			add_application(app);
+            project_apps.push(app);
+            // console.log(project_apps);
 
-			$("#id_edit_app_name").val("");
-		});
+            add_application(app);
 
-		$("#center_column_tabs_content").on("click", "i.open-file", function() {
-			project_tree_open_file(
-				$(this).text(),
-				$(this).data("path")
-			);
-		});
+            $("#id_edit_app_name").val("");
+        });
 
-		$("#center_column_tabs").on("click", "i.close-tab", function() {
-			var tid = $(this).data("panel");
+        $("#center_column_tabs_content").on("click", "i.open-file", function () {
+            project_tree_open_file(
+                $(this).text(),
+                $(this).data("path")
+            );
+        });
 
-			$("#tab-" + tid).parent().prev('li').find('a').tab("show");
-			$("#tab-" + tid).remove();
-			$("#editor-" + tid).remove();
-		});
+        $("#center_column_tabs").on("click", "i.close-tab", function () {
+            var tid = $(this).data("panel");
 
-		$("#center_column_tabs").on("click", "i.save-tab", function() {
-			var tid = $(this).data("panel");
-			var path = $("#tab-" + tid).data("path");
+            $("#tab-" + tid).parent().prev('li').find('a').tab("show");
+            $("#tab-" + tid).remove();
+            $("#editor-" + tid).remove();
+        });
 
-			project_tree_save_file(path);
+        $("#center_column_tabs").on("click", "i.save-tab", function () {
+            var tid = $(this).data("panel");
+            var path = $("#tab-" + tid).data("path");
 
-			$("#tab-" + tid + " span").text($("#tab-" + tid + " span").text().replace(" * ", ""));
-			$("#tab-" + tid + " i.save-tab").remove();
+            project_tree_save_file(path);
 
-			return false;
-		});
+            $("#tab-" + tid + " span").text($("#tab-" + tid + " span").text().replace(" * ", ""));
+            $("#tab-" + tid + " i.save-tab").remove();
 
-		$("#center_column").on("click", "a.remove-model-field-row", function() {
-			$(this).parent().remove();
+            return false;
+        });
 
-			return false;
-		});
+        $("#center_column").on("click", "a.remove-model-field-row", function () {
+            $(this).parent().remove();
 
-		$("#center_column").on("click", "a.add-model-field-row", function() {
-			$(this).parent().before(
-				'<div class="list-group-item list-group-item-action">' +
-			    	'<a class="btn remove-model-field-row" href="#">&times;</a> ' +
-				    '<input type="text" placeholder="field" name="new_model_field_id" required />' +
-				    '<input type="text" placeholder="options (optional)" name="new_model_field_options" />' +
-			    	'<select class="badge badge-light badge-pill float-right" name="new_model_field_type" required>' +
-			    		'<option value="CharField">CharField</option>' +
-			    		'<option value="TextField">TextField</option>' +
-			    		'<option value="IntegerField">IntegerField</option>' +
-			    		'<option value="FloatField">FloatField</option>' +
-			    		'<option value="URLField">URLField</option>' +
-			    		'<option value="BooleanField">BooleanField</option>' +
-			    		'<option value="DateField">DateField</option>' +
-			    		'<option value="DateTimeField">DateTimeField</option>' +
-			    		'<option value="ForeignKey">ForeignKey</option>' +
-			    	'</select>' +
-				'</div>'
-			);
+            return false;
+        });
 
-			return false;
-		});
+        $("#center_column").on("click", "a.add-model-field-row", function () {
+            $(this).parent().before(
+                '<div class="list-group-item list-group-item-action">' +
+                '<a class="btn remove-model-field-row" href="#">&times;</a> ' +
+                '<input type="text" placeholder="field" name="new_model_field_id" required />' +
+                '<input type="text" placeholder="options (optional)" name="new_model_field_options" />' +
+                '<select class="badge badge-light badge-pill float-right" name="new_model_field_type" required>' +
+                '<option value="CharField">CharField</option>' +
+                '<option value="TextField">TextField</option>' +
+                '<option value="IntegerField">IntegerField</option>' +
+                '<option value="FloatField">FloatField</option>' +
+                '<option value="URLField">URLField</option>' +
+                '<option value="BooleanField">BooleanField</option>' +
+                '<option value="DateField">DateField</option>' +
+                '<option value="DateTimeField">DateTimeField</option>' +
+                '<option value="ForeignKey">ForeignKey</option>' +
+                '</select>' +
+                '</div>'
+            );
+
+            return false;
+        });
 
     });
 
     $('#debug_project_btn').on('click', function (e) {
-		$("#run-output-log").html("Starting development server at http://127.0.0.1:8001/");
-		$('.nav-tabs a[href="#run-output"]').tab('show');
+        $("#run-output-log").html("Starting development server at http://127.0.0.1:8001/");
+        $('.nav-tabs a[href="#run-output"]').tab('show');
 
-		$.post("run_project/", {}, function(data) {
-			console.log(data);
+        $.post("run_project/", {}, function (data) {
+            console.log(data);
 
-			PROJECT_PID = data;
+            PROJECT_PID = data;
 
-			$("#run-output-log").html("PROCESS STARTED WITH ID " + PROJECT_PID);
-			$("#run-output-log").append("\n\nStarting development server at http://127.0.0.1:8001/");
+            $("#run-output-log").html("PROCESS STARTED WITH ID " + PROJECT_PID);
+            $("#run-output-log").append("\n\nStarting development server at http://127.0.0.1:8001/");
 
-			setTimeout(function() {
-				window.open("http://127.0.0.1:8001/");
-			}, 2000);
+            setTimeout(function () {
+                window.open("http://127.0.0.1:8001/");
+            }, 2000);
 
-			PROJECT_TIMER_ID = setInterval(function() {
-				$.get("run_project/", {"pid": PROJECT_PID}, function(data) {
-					console.log(data);
-					$("#run-output-log").html(data);
-				});
-			}, 5000);
-		});
-	});
+            PROJECT_TIMER_ID = setInterval(function () {
+                $.get("run_project/", {"pid": PROJECT_PID}, function (data) {
+                    console.log(data);
+                    $("#run-output-log").html(data);
+                });
+            }, 5000);
+        });
+    });
 
-	$('#stop_project_btn').on('click', function (e) {
-		clearInterval(PROJECT_TIMER_ID);
+    $('#stop_project_btn').on('click', function (e) {
+        clearInterval(PROJECT_TIMER_ID);
 
-		$("#run-output-log").append("\n\nStopping development server...");
+        $("#run-output-log").append("\n\nStopping development server...");
 
-		$.post("stop_project/", {"pid": PROJECT_PID}, function(data) {
-			$("#run-output-log").append(data);
-		});
-	});
+        $.post("stop_project/", {"pid": PROJECT_PID}, function (data) {
+            $("#run-output-log").append(data);
+        });
+    });
 </script>
 {% endblock %}

@@ -1,6 +1,6 @@
 import os
-import sys
 import subprocess
+import sys
 from multiprocessing import Process
 
 from django.conf import settings
@@ -31,11 +31,11 @@ def worker(project_id, project_home):
         )
 
         proc = subprocess.Popen(command, shell=True,
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-        )
-    except Exception, e:
+                                stdin=subprocess.PIPE,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE
+                                )
+    except Exception as e:
         with open(log_file, 'a') as f:
             f.write(str(e) + "\n")
 

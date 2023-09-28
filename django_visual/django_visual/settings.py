@@ -67,7 +67,6 @@ TEMPLATE_LOADERS = (
 
 WSGI_APPLICATION = 'django_visual.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -75,10 +74,8 @@ DATABASES = {
     }
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -92,7 +89,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -109,16 +105,20 @@ PROJECTS_HOME = os.path.join(TOP_DIR, 'projects')
 TEMPLATES_HOME = os.path.join(BASE_DIR, 'conf')
 
 PROJECTS_TEMPLATES = [
-    ("empty", "Empty Project", "New Django project with default configuration. <br />Same as running 'django-admin startproject' from terminal."),
-    ("blog", "Blog", "Blog project starts with main page and blog posts list on it. <br />Admin panel included to edit blog entries."),
-    ("cms", "Web Site", "Starting point for content site. Includes main page, <br />items list and item detail page. Preconfigured with <br />'Contact Us' and 'About' pages as well as admin panel."),
-    ("app", "1-Page Application", "One page web application project. <br />Preconfigured index page template based on Bootstrap 4.")
+    ("empty", "Empty Project",
+     "New Django project with default configuration. <br />Same as running 'django-admin startproject' from terminal."),
+    ("blog", "Blog",
+     "Blog project starts with main page and blog posts list on it. <br />Admin panel included to edit blog entries."),
+    ("cms", "Web Site",
+     "Starting point for content site. Includes main page, <br />items list and item detail page. Preconfigured with <br />'Contact Us' and 'About' pages as well as admin panel."),
+    ("app", "1-Page Application",
+     "One page web application project. <br />Preconfigured index page template based on Bootstrap 4.")
 ]
 
 PROJECT_NAMES = ['shiny', 'crazy', 'frog', 'squirrel', 'nut', 'bold',
-    'hamster', 'blog', 'site', 'red', 'dead', 'last', 'first', 'super', 'cool',
-    'brilliant', 'py', 'web', 'app', 'hello'
-]
+                 'hamster', 'blog', 'site', 'red', 'dead', 'last', 'first', 'super', 'cool',
+                 'brilliant', 'py', 'web', 'app', 'hello'
+                 ]
 
 # STATIC_URL = '/static/'
 
